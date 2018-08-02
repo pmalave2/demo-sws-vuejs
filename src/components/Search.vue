@@ -88,7 +88,7 @@
         </div>
       </div>
     </div>
-
+    <p v-show="false">{{msg}}</p>
   </div>
 </template>
 
