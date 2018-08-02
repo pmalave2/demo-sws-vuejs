@@ -61,8 +61,8 @@
         <div class="col"></div>
         <div class="col-auto">
           <p>
-            <input type="text" v-model="name" placeholder="Nombre" v-on:keyup="buscar()">
-            <input value="Buscar" type="button" v-on:click="buscar()">
+            <input type="text" v-model="name" placeholder="Nombre" @keyup="buscar()">
+            <input value="Buscar" type="button" @click="buscar()">
           </p>
         </div>
         <div class="col"></div>
@@ -82,7 +82,7 @@
                 <p class="card-text">
 
                 </p>
-                <a href="#" class="btn btn-primary" v-on:click="getP(x)">Ir al detalle</a>
+                <a href="#" class="btn btn-primary" @click="getP(x)">Ir al detalle</a>
               </div>
           </div>
         </div>
@@ -120,17 +120,9 @@
         errors: []
       }
     },
-    /*
-    mounted() {
-      axios.get(this.baseUrl, {params:{search:this.name}})
-        .then(response => {
-          this.swp = response.data.results;
-        })
-        .catch(e => {
-          this.errors.push(e)
-        })
+    created() {
+      this.buscar();
     },
-    */
     methods:{
         buscar: function () {
           axios.get(this.baseUrl, {params:{search:this.name}})
@@ -150,6 +142,7 @@
           this.addPlanetName(e, this.p);
           this.p.filmsName = this.addFilmsName(e);
           //addImages($scope.p);
+          // eslint-disable-next-line
           $('#modalCenter').modal('show');
         },
         addFilmsName: function(e) {
@@ -161,6 +154,7 @@
             })
             .catch(e => {
               filmsName.push('Nada');
+              this.errors.push(e);
             });		
           });
           return filmsName;
@@ -172,6 +166,7 @@
             }) 
             .catch(e => {
               p.planeta = 'Nada';
+              this.errors.push(e);
             });
         }
     }

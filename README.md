@@ -1,4 +1,4 @@
-# sws-vue-proj
+# Star Wars Searcher / VueJS fork
 
 ## Project setup
 ```
