@@ -1,12 +1,12 @@
 <template>
   <div class="search">
-    <h1 class="text-center" v-show="false">{{ msg }}</h1>
+    <h1 class="text-center">{{ msg }}</h1>
 
     <div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="modalCenterTitle">{{ p.name }}</h5>
+            <h5 class="modal-title" id="modalCenterTitle">{{ p.data.name }}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -15,19 +15,19 @@
               <div class="container-fluid text-capitalize">
                 <div class="row">
                   <div class="col-6 text-right">altura</div>
-                  <div class="col-6">{{ p.height }}</div>
+                  <div class="col-6">{{ p.data.height }}</div>
                 </div>
                 <div class="row">
                   <div class="col-6 text-right">peso</div>
-                  <div class="col-6">{{ p.mass }}</div>
+                  <div class="col-6">{{ p.data.mass }}</div>
                 </div>
                 <div class="row">
                   <div class="col-6 text-right">año nacimiento</div>
-                  <div class="col-6">{{ p.birth_year }}</div>
+                  <div class="col-6">{{ p.data.birth_year }}</div>
                 </div>
                 <div class="row">
                   <div class="col-6 text-right">genero</div>
-                  <div class="col-6">{{ p.gender }}</div>
+                  <div class="col-6">{{ p.data.gender }}</div>
                 </div>
                 <div class="row">
                   <div class="col-6 text-right">planeta</div>
@@ -51,19 +51,22 @@
               </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
     </div>
+
     <div class="container">
       <div class="row sb">
         <div class="col"></div>
         <div class="col-auto">
-          <p>
-            <input type="text" v-model="name" placeholder="Nombre" @keyup="buscar()">
-            <input value="Buscar" type="button" @click="buscar()">
-          </p>
+          <div class="input-group">
+            <input class="form-control" type="text" v-model="name" placeholder="Nombre" @keyup="buscar()">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" @click="buscar()">Buscar</button>
+            </div>
+          </div>
         </div>
         <div class="col"></div>
       </div>
@@ -82,13 +85,12 @@
                 <p class="card-text">
 
                 </p>
-                <a href="#" class="btn btn-primary" @click="getP(x)">Ir al detalle</a>
+                <a class="btn btn-primary" href="#" @click="getP(x)">Ir al detalle</a>
               </div>
           </div>
         </div>
       </div>
     </div>
-    <p v-show="false">{{msg}}</p>
   </div>
 </template>
 
@@ -104,17 +106,14 @@
     },
     data: function (){
       return {
-        name: 'Skywalker',
+        name: '',
         swp: [],
         p: {
-          name: '',
-          height: '',
-          mass: '',
-          birth_year: '',
-          gender: '',
-          planeta: '',
+          data: '',
           imagenes: [
-            {thumbnailUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg'}
+            {
+              thumbnailUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg'
+            }
           ],
           filmsName: [],
         },
@@ -136,11 +135,7 @@
             })
         },
         getP: function(e){
-          this.p.name = e.name;
-          this.p.height = e.height;
-          this.p.mass = e.mass;
-          this.p.birth_year = e.birth_year;
-          this.p.gender = e.gender;
+          this.p.data = e;
           this.addPlanetName(e, this.p);
           this.p.filmsName = this.addFilmsName(e);
           //addImages($scope.p);
@@ -163,7 +158,7 @@
         },
         addPlanetName: function(e, p) {
           axios.get(e.homeworld)
-            .then(response =>{
+            .then(response => {
               p.planeta = response.data.name;
             }) 
             .catch(e => {
@@ -181,7 +176,7 @@
   @import '../../node_modules/bootstrap/scss/bootstrap.scss';
 
   .sb {
-    padding-top: 2em;
+    padding: 2em 0;
   }
   .cc {
     padding-bottom: 1em;

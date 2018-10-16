@@ -1,5 +1,5 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: './src/main.js',
@@ -78,16 +78,22 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     noInfo: true,
-    overlay: true
+    overlay: true,
+    compress: true,
+    hot: true, 
+    open: true
   },
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 };
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
+  module.exports.devtool = '#source-map';
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
