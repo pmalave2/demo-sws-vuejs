@@ -94,6 +94,8 @@
 
 <script>
   import axios from 'axios';
+  import $ from 'jquery';
+  import bootstrap from 'bootstrap';
 
   export default {
     name: 'Search',
@@ -175,7 +177,9 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
+  @import '../../node_modules/bootstrap/scss/bootstrap.scss';
+
   .sb {
     padding-top: 2em;
   }
