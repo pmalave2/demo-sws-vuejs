@@ -62,7 +62,7 @@
         <div class="col"></div>
         <div class="col-auto">
           <div class="input-group">
-            <input class="form-control" type="text" v-model="name" placeholder="Nombre" @keyup="buscar()">
+            <input class="form-control" type="text" v-model="name" placeholder="Nombre">
             <div class="input-group-append">
               <button class="btn btn-outline-secondary" type="button" @click="buscar()">Buscar</button>
             </div>
@@ -97,7 +97,6 @@
 <script>
   import axios from 'axios';
   import $ from 'jquery';
-  import bootstrap from 'bootstrap';
 
   export default {
     name: 'Search',
@@ -173,7 +172,6 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-  @import '../../node_modules/bootstrap/scss/bootstrap.scss';
 
   .sb {
     padding: 2em 0;

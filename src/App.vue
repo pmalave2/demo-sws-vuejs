@@ -5,17 +5,20 @@
 </template>
 
 <script>
-import Search from './components/Search.vue'
+  import bootstrap from 'bootstrap';
+  import Search from './components/Search.vue'
 
-export default {
-  name: 'app',
-  components: {
-    Search
+  export default {
+    name: 'app',
+    components: {
+      Search
+    }
   }
-}
 </script>
 
 <style lang="scss">
+  @import '../node_modules/bootstrap/scss/bootstrap.scss';
+
   #app {
     font-family:  Arial, 'Avenir', Helvetica ,sans-serif;
     -webkit-font-smoothing: antialiased;
