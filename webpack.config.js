@@ -58,9 +58,18 @@ module.exports = {
         }
       },
       {
-        test: /\.js$/,
+        test: /\.m?js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        options: {
+          presets: [
+            ['@babel/preset-env', {
+              'modules': false,
+              'targets': '> 1%, last 2 versions, not ie <= 8, not dead',
+              'ignoreBrowserslistConfig': true
+            }]
+          ]
+        },
+        exclude: /(node_modules|bower_components)/
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
