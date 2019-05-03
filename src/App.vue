@@ -5,7 +5,6 @@
 </template>
 
 <script>
-  import bootstrap from 'bootstrap';
   import Search from './components/Search.vue'
 
   export default {
@@ -17,8 +16,6 @@
 </script>
 
 <style lang="scss">
-  @import '../node_modules/bootstrap/scss/bootstrap.scss';
-
   #app {
     font-family:  Arial, 'Avenir', Helvetica ,sans-serif;
     -webkit-font-smoothing: antialiased;
