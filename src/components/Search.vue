@@ -116,7 +116,7 @@
           ],
           filmsName: [],
         },
-        baseUrl: 'https://swapi.co/api/people/',
+        baseUrl: 'https://swapi.dev/api/people/',
         errors: []
       }
     },
